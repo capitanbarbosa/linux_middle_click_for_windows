@@ -8,7 +8,7 @@ MButton::
         ; Current functionality for text selection
         prevClipboard := A_Clipboard
         A_Clipboard := ""
-        Send("^x")
+        Send("^c")
         ClipWait(0.1)
         
         if (A_Clipboard != "")
