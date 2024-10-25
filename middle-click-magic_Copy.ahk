@@ -18,6 +18,14 @@ MButton::
             return
         }
         
+        ; If no text was copied and no text is selected, paste the previous clipboard content
+        if (A_Clipboard == "")
+        {
+            A_Clipboard := prevClipboard
+            Send("^v")
+            return
+        }
+        
         ; If no text was copied, try to select all text and copy
         Send("^a^c")
         ClipWait(0.5)
