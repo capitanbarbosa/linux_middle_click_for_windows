@@ -5,19 +5,31 @@ MButton::
     ; Check if the cursor is over an edit control or other text input
     if (A_Cursor = "IBeam")
     {
-        ; Current functionality for text selection
         prevClipboard := A_Clipboard
         A_Clipboard := ""
+        
+        ; Try to copy any selected text
         Send("^c")
-        ClipWait(0.1)
+        ClipWait(0.5)
         
         if (A_Clipboard != "")
         {
-            ; Text was selected, keep it in clipboard
+            ; Text was selected and copied, keep it in clipboard
             return
         }
         
-        ; No text was selected, paste the previous clipboard content
+        ; If no text was copied, try to select all text and copy
+        Send("^a^c")
+        ClipWait(0.5)
+        
+        if (A_Clipboard != "")
+        {
+            ; Text was copied after selecting all, keep it in clipboard
+            Send("{Right}")  ; Move cursor to end of text
+            return
+        }
+        
+        ; If still no text, paste the previous clipboard content
         A_Clipboard := prevClipboard
         Send("^v")
     }
