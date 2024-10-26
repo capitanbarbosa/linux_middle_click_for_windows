@@ -2,11 +2,9 @@
 
 Autohotkey v2 script.
 
-## 2 Versions:
-- a version that copies then pastes when middle clicking.
-- a version that cuts then pastes when middle clicking.
-
-whenever the mouse cursor is outside a text selection, it closes the tabs like it normally would.
+- if text is highlighted, it copies.
+- if no text is highlighted, it pastes.
+- whenever the mouse cursor is outside a text selection, it sends a normal middle click. (closes tabs like it normally would)
 
 
 Feel free to share!
